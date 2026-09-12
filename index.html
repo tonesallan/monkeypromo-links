@@ -52,8 +52,8 @@
       <a class="mini-brand" href="#top" aria-label="MonkeyPromo - início">
         <img class="mini-brand-image" src="assets/mascot-monkeypromo.webp" width="42" height="42" alt="" decoding="async">
         <span class="mini-brand-copy">
-          <strong>MonkeyPromo</strong>
-          <small>achadinhos &amp; ofertas</small>
+          <strong id="miniBrandName">MonkeyPromo</strong>
+          <small id="miniBrandTagline">achadinhos &amp; ofertas</small>
         </span>
       </a>
 
@@ -73,24 +73,24 @@
         <span class="hunt-badge"><span aria-hidden="true">🔎</span> caçando ofertas</span>
       </div>
 
-      <p class="eyebrow">ACHADINHOS &amp; OFERTAS</p>
+      <p class="eyebrow" id="heroEyebrow">ACHADINHOS &amp; OFERTAS</p>
       <h1 id="brand-title">O MonkeyPromo caça.<br><span>Você economiza.</span></h1>
-      <p class="hero-copy">Achadinhos, cupons e promoções de várias lojas, selecionados para você não perder tempo procurando.</p>
+      <p class="hero-copy" id="heroDescription">Achadinhos, cupons e promoções de várias lojas, selecionados para você não perder tempo procurando.</p>
 
-      <div class="hero-tags" aria-label="Benefícios do MonkeyPromo">
+      <div class="hero-tags" id="heroBenefits" aria-label="Benefícios do MonkeyPromo">
         <span>⚡ Ofertas frequentes</span>
         <span>🏷️ Várias lojas</span>
         <span>🔎 Curadoria MonkeyPromo</span>
       </div>
 
       <div class="hero-actions">
-        <a class="primary-cta" href="https://wa.me/5567981659712?text=Ol%C3%A1%20MonkeyPromo%21%20Vim%20pelo%20Instagram." target="_blank" rel="noopener noreferrer">
+        <a class="primary-cta" id="whatsappCta" href="https://wa.me/5567981659712?text=Ol%C3%A1%20MonkeyPromo%21%20Vim%20pelo%20Instagram." target="_blank" rel="noopener noreferrer">
           <span class="cta-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.8 11.8 0 0 0 1.9 17.8L.3 23.7l6-1.6a11.7 11.7 0 0 0 5.6 1.4h.1A11.8 11.8 0 0 0 20.5 3.5Zm-8.5 18a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.6 1 1-3.5-.2-.4a9.8 9.8 0 1 1 8.2 4.5Zm5.4-7.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.6-.3-.5.3-.5.9-1.7.1-.2 0-.4 0-.6l-1-2.4c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.3 1.4 3.6.2.2 2.4 3.7 5.8 5.2 2.2 1 3.1 1 4.2.9 1.3-.2 1.8-.8 2.1-1.6.3-.8.3-1.4.2-1.6-.1-.2-.3-.2-.6-.4Z"/></svg>
           </span>
           <span class="cta-copy">
-            <strong>Falar com o MonkeyPromo no WhatsApp</strong>
-            <small>Entre em contato pelo WhatsApp oficial</small>
+            <strong id="whatsappTitle">Falar com o MonkeyPromo no WhatsApp</strong>
+            <small id="whatsappSubtitle">Entre em contato pelo WhatsApp oficial</small>
           </span>
           <span class="cta-arrow" aria-hidden="true">→</span>
         </a>
@@ -104,11 +104,11 @@
       <p class="hero-note">Sem cadastro • acesso direto • confira sempre o preço final na loja</p>
     </section>
 
-    <aside class="announcement" aria-label="Novidades MonkeyPromo">
+    <aside class="announcement" id="announcement" aria-label="Novidades MonkeyPromo">
       <img class="announcement-image" src="assets/mascot-monkeypromo.webp" width="48" height="48" alt="" loading="lazy" decoding="async">
       <div>
-        <strong>O MonkeyPromo está crescendo</strong>
-        <p>Novas categorias, grupos e lojas estão chegando.</p>
+        <strong id="announcementTitle">O MonkeyPromo está crescendo</strong>
+        <p id="announcementDescription">Novas categorias, grupos e lojas estão chegando.</p>
       </div>
     </aside>
 
@@ -147,15 +147,15 @@
     <footer>
       <div class="footer-brand">
         <img src="assets/mascot-monkeypromo.webp" width="34" height="34" alt="" loading="lazy" decoding="async">
-        <strong>MonkeyPromo</strong>
+        <strong id="footerBrandName">MonkeyPromo</strong>
       </div>
-      <p>Alguns links podem ser de afiliado. Você não paga nada a mais por isso e o MonkeyPromo pode receber uma comissão pela indicação.</p>
-      <p>Preços, cupons e disponibilidade podem mudar. Confira sempre as condições diretamente na loja antes da compra.</p>
+      <p id="affiliateNotice">Alguns links podem ser de afiliado. Você não paga nada a mais por isso e o MonkeyPromo pode receber uma comissão pela indicação.</p>
+      <p id="priceNotice">Preços, cupons e disponibilidade podem mudar. Confira sempre as condições diretamente na loja antes da compra.</p>
       <p class="copyright">© <span id="year"></span> MonkeyPromo</p>
     </footer>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite">Link copiado!</div>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>

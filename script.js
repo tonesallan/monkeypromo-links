@@ -1,101 +1,70 @@
-/*
-  MonkeyPromo Links
-  Ative somente destinos que já entregam valor ao visitante.
-  Itens com enabled: false ou url vazia ficam totalmente ocultos.
-*/
+import {
+  getRenderableItems,
+  loadConfig
+} from "./config-core.js";
 
-const linkConfig = {
-  community: [
-    {
-      title: "Jardinagem",
-      subtitle: "Ofertas para jardim, cultivo e ferramentas",
-      icon: "🌱",
-      accent: "#58c469",
-      url: "",
-      enabled: false
-    },
-    {
-      title: "Academia",
-      subtitle: "Treino, fitness, roupas e acessórios",
-      icon: "🏋️",
-      accent: "#5b8cff",
-      url: "",
-      enabled: false
-    },
-    {
-      title: "Camping",
-      subtitle: "Aventura, trilha e vida ao ar livre",
-      icon: "🏕️",
-      accent: "#e7a52f",
-      url: "",
-      enabled: false
-    },
-    {
-      title: "Casa & Utilidades",
-      subtitle: "Achadinhos úteis para o dia a dia",
-      icon: "🏠",
-      accent: "#a96bff",
-      url: "",
-      enabled: false
-    }
-  ],
+const byId = id => document.getElementById(id);
 
-  stores: [
-    {
-      title: "Ofertas da Shopee",
-      subtitle: "Seleção MonkeyPromo na Shopee",
-      icon: "🛍️",
-      accent: "#ee4d2d",
-      url: "",
-      enabled: false
-    },
-    {
-      title: "Ofertas Mercado Livre",
-      subtitle: "Seleção MonkeyPromo no Mercado Livre",
-      icon: "🟡",
-      accent: "#f4d03f",
-      url: "",
-      enabled: false
-    },
-    {
-      title: "Achadinhos Amazon",
-      subtitle: "Seleção MonkeyPromo na Amazon",
-      icon: "📦",
-      accent: "#ff9900",
-      url: "",
-      enabled: false
-    },
-    {
-      title: "Achadinhos TikTok Shop",
-      subtitle: "Seleção MonkeyPromo no TikTok Shop",
-      icon: "♪",
-      accent: "#6ce7e0",
-      url: "",
-      enabled: false
-    }
-  ],
+function setText(id, value) {
+  const element = byId(id);
+  if (element) element.textContent = value;
+}
 
-  social: [
-    {
-      title: "Instagram",
-      subtitle: "@monkey.promo",
-      icon: "◎",
-      accent: "#d9659f",
-      url: "https://www.instagram.com/monkey.promo/",
-      enabled: true
-    },
-    {
-      title: "Telegram",
-      subtitle: "Canal oficial MonkeyPromo",
-      icon: "✈",
-      accent: "#43a6dc",
-      url: "",
-      enabled: false
-    }
-  ]
-};
+function renderBrand(config) {
+  setText("miniBrandName", config.brand.name);
+  setText("miniBrandTagline", config.brand.tagline);
+  setText("footerBrandName", config.brand.name);
+}
 
-const isActive = item => Boolean(item.enabled && item.url && item.url.trim());
+function renderHero(config) {
+  setText("heroEyebrow", config.hero.eyebrow);
+  setText("heroDescription", config.hero.description);
+
+  const title = byId("brand-title");
+  if (title) {
+    const highlight = document.createElement("span");
+    highlight.textContent = config.hero.highlight;
+    title.replaceChildren(
+      document.createTextNode(config.hero.title),
+      document.createElement("br"),
+      highlight
+    );
+  }
+
+  const benefits = byId("heroBenefits");
+  if (benefits) {
+    const nodes = config.benefits.map(benefit => {
+      const item = document.createElement("span");
+      item.textContent = [benefit.icon, benefit.text].filter(Boolean).join(" ");
+      return item;
+    });
+    benefits.replaceChildren(...nodes);
+  }
+}
+
+function renderWhatsApp(config) {
+  const cta = byId("whatsappCta");
+  if (!cta) return;
+
+  cta.hidden = !config.whatsapp.visible;
+  if (!config.whatsapp.visible) return;
+
+  cta.href = config.whatsapp.url;
+  cta.dataset.itemId = config.whatsapp.id;
+  setText("whatsappTitle", config.whatsapp.title);
+  setText("whatsappSubtitle", config.whatsapp.subtitle);
+}
+
+function renderAnnouncement(config) {
+  const announcement = byId("announcement");
+  if (!announcement) return;
+
+  announcement.hidden = !config.announcement.enabled;
+  if (!config.announcement.enabled) return;
+
+  setText("announcementTitle", config.announcement.title);
+  setText("announcementDescription", config.announcement.description);
+}
 
 function createCard(item, grid = false) {
   const link = document.createElement("a");
@@ -103,7 +72,8 @@ function createCard(item, grid = false) {
   link.href = item.url;
   link.target = "_blank";
   link.rel = "noopener noreferrer";
-  link.style.setProperty("--card-accent", item.accent || "#ff762f");
+  link.dataset.itemId = item.id;
+  link.style.setProperty("--card-accent", item.accent);
 
   const icon = document.createElement("span");
   icon.className = "icon-box";
@@ -130,41 +100,61 @@ function createCard(item, grid = false) {
   return link;
 }
 
-function renderSection(sectionId, containerId, items, grid = false) {
-  const section = document.getElementById(sectionId);
-  const container = document.getElementById(containerId);
-  const activeItems = items.filter(isActive);
+function renderLinkSection(sectionId, containerId, items, grid = false) {
+  const section = byId(sectionId);
+  const container = byId(containerId);
+  if (!section || !container) return 0;
 
-  container.replaceChildren(...activeItems.map(item => createCard(item, grid)));
-  section.hidden = activeItems.length === 0;
-
-  return activeItems.length;
+  const visibleItems = getRenderableItems(items);
+  container.replaceChildren(...visibleItems.map(item => createCard(item, grid)));
+  section.hidden = visibleItems.length === 0;
+  return visibleItems.length;
 }
 
-const communityCount = renderSection("interesses", "community-links", linkConfig.community, true);
-renderSection("lojas", "store-links", linkConfig.stores);
-renderSection("redes", "social-links", linkConfig.social);
+function renderCommunity(config) {
+  const count = renderLinkSection(
+    "interesses",
+    "community-links",
+    config.community,
+    true
+  );
 
-document.getElementById("interestCta").hidden = communityCount === 0;
-document.getElementById("year").textContent = new Date().getFullYear();
+  const interestCta = byId("interestCta");
+  if (interestCta) interestCta.hidden = count === 0;
+}
 
-const shareButton = document.getElementById("shareButton");
-const shareLabel = document.getElementById("shareLabel");
-const toast = document.getElementById("toast");
+function renderStores(config) {
+  renderLinkSection("lojas", "store-links", config.stores);
+}
+
+function renderSocial(config) {
+  renderLinkSection("redes", "social-links", config.social);
+}
+
+function renderFooter(config) {
+  setText("affiliateNotice", config.footer.affiliateNotice);
+  setText("priceNotice", config.footer.priceNotice);
+  setText("year", String(new Date().getFullYear()));
+}
+
 let toastTimer;
 
 function showToast(message) {
+  const toast = byId("toast");
+  if (!toast) return;
+
   toast.textContent = message;
   toast.classList.add("show");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
 }
 
-shareButton.addEventListener("click", async () => {
+async function shareMonkeyPromo(config) {
+  const shareLabel = byId("shareLabel");
   const shareData = {
-    title: "MonkeyPromo — Ofertas, Achadinhos e Cupons",
-    text: "O MonkeyPromo caça. Você economiza. Veja achadinhos, cupons e promoções selecionadas.",
-    url: "https://monkeypromo.pages.dev/"
+    title: config.share.title,
+    text: config.share.text,
+    url: window.location.href
   };
 
   try {
@@ -174,10 +164,40 @@ shareButton.addEventListener("click", async () => {
     }
 
     await navigator.clipboard.writeText(shareData.url);
-    shareLabel.textContent = "Copiado";
+    if (shareLabel) shareLabel.textContent = "Copiado";
     showToast("Link copiado!");
-    setTimeout(() => { shareLabel.textContent = "Compartilhar"; }, 1800);
+    setTimeout(() => {
+      if (shareLabel) shareLabel.textContent = "Compartilhar";
+    }, 1800);
   } catch (error) {
-    if (error?.name !== "AbortError") showToast("Não foi possível compartilhar agora.");
+    if (error?.name !== "AbortError") {
+      console.error("[MonkeyPromo] Falha ao compartilhar.", error);
+      showToast("Não foi possível compartilhar agora.");
+    }
   }
+}
+
+function render(config) {
+  renderBrand(config);
+  renderHero(config);
+  renderWhatsApp(config);
+  renderAnnouncement(config);
+  renderCommunity(config);
+  renderStores(config);
+  renderSocial(config);
+  renderFooter(config);
+
+  const shareButton = byId("shareButton");
+  if (shareButton) {
+    shareButton.addEventListener("click", () => shareMonkeyPromo(config));
+  }
+}
+
+async function init() {
+  const { config } = await loadConfig();
+  render(config);
+}
+
+init().catch(error => {
+  console.error("[MonkeyPromo] Falha inesperada na inicialização. O conteúdo estático foi preservado.", error);
 });
