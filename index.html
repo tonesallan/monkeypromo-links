@@ -3,52 +3,97 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111318">
-  <meta name="description" content="MonkeyPromo — promoções, achadinhos e grupos de ofertas em um só lugar.">
-  <meta property="og:title" content="MonkeyPromo">
-  <meta property="og:description" content="Promoções, achadinhos e ofertas selecionadas para você.">
+  <meta name="theme-color" content="#0b0c0f">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="MonkeyPromo — achadinhos, promoções e grupos de ofertas em um só lugar.">
+  <link rel="canonical" href="https://monkeypromo.pages.dev/">
+
+  <meta property="og:title" content="MonkeyPromo — Achadinhos e Promoções">
+  <meta property="og:description" content="Seu atalho para promoções da Shopee, Mercado Livre, Amazon e muito mais.">
   <meta property="og:type" content="website">
-  <title>MonkeyPromo — Links</title>
+  <meta property="og:url" content="https://monkeypromo.pages.dev/">
+  <meta property="og:site_name" content="MonkeyPromo">
+  <meta name="twitter:card" content="summary">
+
+  <title>MonkeyPromo — Achadinhos e Promoções</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="ambient ambient-three" aria-hidden="true"></div>
 
   <main class="page-shell">
-    <section class="profile-card" aria-labelledby="brand-title">
+    <header class="topbar">
+      <a class="mini-brand" href="#top" aria-label="MonkeyPromo - início">
+        <span class="mini-brand-icon" aria-hidden="true">🐵</span>
+        <span>
+          <strong>MonkeyPromo</strong>
+          <small>achadinhos & ofertas</small>
+        </span>
+      </a>
+
+      <button class="share-button" id="shareButton" type="button" aria-label="Compartilhar MonkeyPromo">
+        <span aria-hidden="true">↗</span>
+        <span id="shareLabel">Compartilhar</span>
+      </button>
+    </header>
+
+    <section class="hero-card" id="top" aria-labelledby="brand-title">
+      <div class="hero-glow" aria-hidden="true"></div>
+
       <div class="avatar-wrap" aria-hidden="true">
-        <div class="avatar">🐵</div>
-        <span class="online-dot"></span>
+        <div class="avatar-ring">
+          <div class="avatar">🐵</div>
+        </div>
+        <span class="online-badge"><i></i> online</span>
       </div>
 
-      <p class="eyebrow">OFERTAS SELECIONADAS</p>
-      <h1 id="brand-title">MonkeyPromo</h1>
-      <p class="bio">Achadinhos, promoções e ofertas da internet em um só lugar.</p>
+      <p class="eyebrow">SEU ATALHO PARA AS MELHORES OFERTAS</p>
+      <h1 id="brand-title">Achados que valem <span>o clique.</span></h1>
+      <p class="hero-copy">Promoções selecionadas, grupos por tema e links diretos para você encontrar boas oportunidades sem perder tempo.</p>
 
-      <div class="trust-row">
+      <div class="hero-tags" aria-label="Benefícios">
         <span>⚡ Atualizações frequentes</span>
+        <span>🏷️ Várias lojas</span>
         <span>🔗 Links diretos</span>
       </div>
+
+      <div class="hero-actions">
+        <a class="primary-cta" href="https://wa.me/5567981659712?text=Ol%C3%A1%20MonkeyPromo%21%20Vim%20pelo%20Instagram." target="_blank" rel="noopener noreferrer">
+          <span class="cta-icon" aria-hidden="true">💬</span>
+          <span class="cta-copy">
+            <strong>Receber ofertas no WhatsApp</strong>
+            <small>Acesse o canal oficial do MonkeyPromo</small>
+          </span>
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a class="secondary-cta" href="#grupos">
+          <span aria-hidden="true">🔥</span>
+          Ver grupos por interesse
+        </a>
+      </div>
+
+      <p class="hero-note">Sem cadastro • acesso direto • confira sempre o preço final na loja</p>
     </section>
 
-    <section class="featured">
-      <a class="featured-link" href="https://wa.me/5567981659712?text=Ol%C3%A1%20MonkeyPromo%21%20Vim%20pelo%20Instagram." target="_blank" rel="noopener noreferrer">
-        <span class="featured-icon">💬</span>
-        <span class="featured-copy">
-          <strong>Falar com o MonkeyPromo</strong>
-          <small>WhatsApp oficial</small>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-    </section>
+    <aside class="announcement" aria-label="Novidades MonkeyPromo">
+      <span class="announcement-icon" aria-hidden="true">🐵</span>
+      <div>
+        <strong>O MonkeyPromo está crescendo</strong>
+        <p>Novos grupos e categorias estão sendo preparados.</p>
+      </div>
+      <span class="announcement-spark" aria-hidden="true">✦</span>
+    </aside>
 
-    <section class="section-block">
+    <section class="section-block" id="grupos">
       <div class="section-heading">
         <div>
           <p class="section-kicker">COMUNIDADE</p>
-          <h2>Grupos de ofertas</h2>
+          <h2>Escolha o que você gosta</h2>
+          <p class="section-description">Entre nos grupos temáticos e receba ofertas mais relevantes para você.</p>
         </div>
         <span class="pill">Em expansão</span>
       </div>
@@ -60,18 +105,20 @@
       <div class="section-heading">
         <div>
           <p class="section-kicker">LOJAS</p>
-          <h2>Ofertas por plataforma</h2>
+          <h2>Onde caçamos promoções</h2>
+          <p class="section-description">Atalhos para as principais plataformas acompanhadas pelo MonkeyPromo.</p>
         </div>
       </div>
 
       <div id="store-links" class="link-list"></div>
     </section>
 
-    <section class="section-block">
+    <section class="section-block social-section">
       <div class="section-heading">
         <div>
-          <p class="section-kicker">SOCIAL</p>
-          <h2>Acompanhe o MonkeyPromo</h2>
+          <p class="section-kicker">CONECTE-SE</p>
+          <h2>Siga o MonkeyPromo</h2>
+          <p class="section-description">Acompanhe novos achadinhos, avisos e novidades.</p>
         </div>
       </div>
 
@@ -79,11 +126,17 @@
     </section>
 
     <footer>
-      <div class="footer-brand">🐵 <strong>MonkeyPromo</strong></div>
-      <p>Promoções podem mudar ou encerrar sem aviso. Confira preço e condições na loja antes da compra.</p>
+      <div class="footer-brand">
+        <span aria-hidden="true">🐵</span>
+        <strong>MonkeyPromo</strong>
+      </div>
+      <p>Alguns links podem ser de afiliado. O preço para você não muda e isso ajuda a manter o projeto.</p>
+      <p>Promoções podem mudar ou encerrar sem aviso. Confira valores e condições diretamente na loja antes da compra.</p>
       <p class="copyright">© <span id="year"></span> MonkeyPromo</p>
     </footer>
   </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Link copiado!</div>
 
   <script src="script.js"></script>
 </body>
