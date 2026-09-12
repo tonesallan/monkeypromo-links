@@ -1,8 +1,7 @@
 /*
   MonkeyPromo Links
-  Para ativar ou trocar um link, altere apenas este arquivo.
-  enabled: true  => botão ativo
-  enabled: false => mostra "Em breve"
+  Ative somente destinos que já entregam valor ao visitante.
+  Itens com enabled: false ou url vazia ficam totalmente ocultos.
 */
 
 const linkConfig = {
@@ -11,7 +10,7 @@ const linkConfig = {
       title: "Jardinagem",
       subtitle: "Ofertas para jardim, cultivo e ferramentas",
       icon: "🌱",
-      accent: "rgba(88, 196, 105, .28)",
+      accent: "#58c469",
       url: "",
       enabled: false
     },
@@ -19,7 +18,7 @@ const linkConfig = {
       title: "Academia",
       subtitle: "Treino, fitness, roupas e acessórios",
       icon: "🏋️",
-      accent: "rgba(73, 132, 255, .25)",
+      accent: "#5b8cff",
       url: "",
       enabled: false
     },
@@ -27,7 +26,7 @@ const linkConfig = {
       title: "Camping",
       subtitle: "Aventura, trilha e vida ao ar livre",
       icon: "🏕️",
-      accent: "rgba(245, 166, 35, .25)",
+      accent: "#e7a52f",
       url: "",
       enabled: false
     },
@@ -35,7 +34,7 @@ const linkConfig = {
       title: "Casa & Utilidades",
       subtitle: "Achadinhos úteis para o dia a dia",
       icon: "🏠",
-      accent: "rgba(173, 101, 255, .22)",
+      accent: "#a96bff",
       url: "",
       enabled: false
     }
@@ -43,34 +42,34 @@ const linkConfig = {
 
   stores: [
     {
-      title: "Shopee",
-      subtitle: "Achadinhos, cupons e promoções",
+      title: "Ofertas da Shopee",
+      subtitle: "Seleção MonkeyPromo na Shopee",
       icon: "🛍️",
-      accent: "rgba(255, 106, 42, .27)",
+      accent: "#ee4d2d",
       url: "",
       enabled: false
     },
     {
-      title: "Mercado Livre",
-      subtitle: "Ofertas selecionadas e oportunidades",
+      title: "Ofertas Mercado Livre",
+      subtitle: "Seleção MonkeyPromo no Mercado Livre",
       icon: "🟡",
-      accent: "rgba(255, 220, 55, .20)",
+      accent: "#f4d03f",
       url: "",
       enabled: false
     },
     {
-      title: "Amazon",
-      subtitle: "Produtos, ofertas e achados",
+      title: "Achadinhos Amazon",
+      subtitle: "Seleção MonkeyPromo na Amazon",
       icon: "📦",
-      accent: "rgba(255, 153, 0, .20)",
+      accent: "#ff9900",
       url: "",
       enabled: false
     },
     {
-      title: "TikTok Shop",
-      subtitle: "Produtos em alta e achadinhos",
-      icon: "🎵",
-      accent: "rgba(54, 226, 214, .18)",
+      title: "Achadinhos TikTok Shop",
+      subtitle: "Seleção MonkeyPromo no TikTok Shop",
+      icon: "♪",
+      accent: "#6ce7e0",
       url: "",
       enabled: false
     }
@@ -79,90 +78,92 @@ const linkConfig = {
   social: [
     {
       title: "Instagram",
-      subtitle: "@monkey.promo • acompanhe os novos achadinhos",
-      icon: "📸",
-      accent: "rgba(225, 48, 108, .23)",
+      subtitle: "@monkey.promo",
+      icon: "◎",
+      accent: "#d9659f",
       url: "https://www.instagram.com/monkey.promo/",
       enabled: true
     },
     {
       title: "Telegram",
-      subtitle: "Canal oficial de ofertas",
-      icon: "✈️",
-      accent: "rgba(39, 160, 216, .22)",
+      subtitle: "Canal oficial MonkeyPromo",
+      icon: "✈",
+      accent: "#43a6dc",
       url: "",
       enabled: false
     }
   ]
 };
 
-function createCard(item, layout = "list") {
-  const isLive = Boolean(item.enabled && item.url);
-  const tag = isLive ? "a" : "div";
-  const el = document.createElement(tag);
+const isActive = item => Boolean(item.enabled && item.url && item.url.trim());
 
-  el.className = `link-card${isLive ? "" : " disabled"}`;
-  el.style.setProperty("--card-accent", item.accent || "rgba(255,106,42,.16)");
+function createCard(item, grid = false) {
+  const link = document.createElement("a");
+  link.className = `link-card${grid ? " grid-card" : ""}`;
+  link.href = item.url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.style.setProperty("--card-accent", item.accent || "#ff762f");
 
-  if (tag === "a") {
-    el.href = item.url;
-    el.target = "_blank";
-    el.rel = "noopener noreferrer";
-    el.setAttribute("aria-label", `${item.title}: ${item.subtitle}`);
-  }
+  const icon = document.createElement("span");
+  icon.className = "icon-box";
+  icon.setAttribute("aria-hidden", "true");
+  icon.textContent = item.icon;
 
-  const status = isLive
-    ? '<span class="status-badge live">Acessar</span>'
-    : '<span class="status-badge soon">Em breve</span>';
+  const copy = document.createElement("span");
+  copy.className = "card-copy";
 
-  if (layout === "grid") {
-    el.innerHTML = `
-      <span class="card-topline">
-        <span class="icon-box" aria-hidden="true">${item.icon}</span>
-        ${status}
-      </span>
-      <span class="card-copy">
-        <strong>${item.title}</strong>
-        <small>${item.subtitle}</small>
-      </span>
-    `;
-  } else {
-    el.innerHTML = `
-      <span class="icon-box" aria-hidden="true">${item.icon}</span>
-      <span class="card-copy">
-        <strong>${item.title}</strong>
-        <small>${item.subtitle}</small>
-      </span>
-      ${isLive ? '<span class="card-end" aria-hidden="true">→</span>' : status}
-    `;
-  }
+  const title = document.createElement("strong");
+  title.textContent = item.title;
 
-  return el;
+  const subtitle = document.createElement("small");
+  subtitle.textContent = item.subtitle;
+
+  copy.append(title, subtitle);
+
+  const end = document.createElement("span");
+  end.className = "card-end";
+  end.setAttribute("aria-hidden", "true");
+  end.textContent = "→";
+
+  link.append(icon, copy, end);
+  return link;
 }
 
-function renderLinks(containerId, items, layout = "list") {
+function renderSection(sectionId, containerId, items, grid = false) {
+  const section = document.getElementById(sectionId);
   const container = document.getElementById(containerId);
-  if (!container) return;
+  const activeItems = items.filter(isActive);
 
-  const fragment = document.createDocumentFragment();
-  items.forEach(item => fragment.appendChild(createCard(item, layout)));
-  container.appendChild(fragment);
+  container.replaceChildren(...activeItems.map(item => createCard(item, grid)));
+  section.hidden = activeItems.length === 0;
+
+  return activeItems.length;
 }
+
+const communityCount = renderSection("interesses", "community-links", linkConfig.community, true);
+renderSection("lojas", "store-links", linkConfig.stores);
+renderSection("redes", "social-links", linkConfig.social);
+
+document.getElementById("interestCta").hidden = communityCount === 0;
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const shareButton = document.getElementById("shareButton");
+const shareLabel = document.getElementById("shareLabel");
+const toast = document.getElementById("toast");
+let toastTimer;
 
 function showToast(message) {
-  const toast = document.getElementById("toast");
-  if (!toast) return;
-
   toast.textContent = message;
   toast.classList.add("show");
-  window.clearTimeout(showToast.timeoutId);
-  showToast.timeoutId = window.setTimeout(() => toast.classList.remove("show"), 2200);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
 }
 
-async function shareMonkeyPromo() {
+shareButton.addEventListener("click", async () => {
   const shareData = {
-    title: "MonkeyPromo",
-    text: "Achadinhos, promoções e grupos de ofertas em um só lugar.",
+    title: "MonkeyPromo — Ofertas, Achadinhos e Cupons",
+    text: "O MonkeyPromo caça. Você economiza. Veja achadinhos, cupons e promoções selecionadas.",
     url: "https://monkeypromo.pages.dev/"
   };
 
@@ -173,22 +174,10 @@ async function shareMonkeyPromo() {
     }
 
     await navigator.clipboard.writeText(shareData.url);
+    shareLabel.textContent = "Copiado";
     showToast("Link copiado!");
+    setTimeout(() => { shareLabel.textContent = "Compartilhar"; }, 1800);
   } catch (error) {
-    if (error?.name === "AbortError") return;
-
-    try {
-      await navigator.clipboard.writeText(shareData.url);
-      showToast("Link copiado!");
-    } catch {
-      showToast("Copie: monkeypromo.pages.dev");
-    }
+    if (error?.name !== "AbortError") showToast("Não foi possível compartilhar agora.");
   }
-}
-
-renderLinks("community-links", linkConfig.community, "grid");
-renderLinks("store-links", linkConfig.stores);
-renderLinks("social-links", linkConfig.social);
-
-document.getElementById("year").textContent = new Date().getFullYear();
-document.getElementById("shareButton")?.addEventListener("click", shareMonkeyPromo);
+});
