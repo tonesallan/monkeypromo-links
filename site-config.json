@@ -85,8 +85,8 @@
       "subtitle": "Seleção MonkeyPromo na Shopee",
       "icon": "🛍️",
       "accent": "#ee4d2d",
-      "url": "",
-      "enabled": false,
+      "url": "http://127.0.0.1:3030/",
+      "enabled": true,
       "order": 1
     },
     {
@@ -151,7 +151,7 @@
     "text": "O MonkeyPromo caça. Você economiza. Veja achadinhos, cupons e promoções selecionadas."
   },
   "seo": {
-    "title": "O MonkeyPromo está crescendo · TESTE PAINEL",
+    "title": "MonkeyPromo — Ofertas, Achadinhos e Cupons",
     "description": "Encontre achadinhos, cupons e promoções selecionadas da Shopee, Mercado Livre, Amazon e outras lojas.",
     "ogTitle": "MonkeyPromo — Ofertas, Achadinhos e Cupons",
     "ogDescription": "Encontre achadinhos, cupons e promoções selecionadas da Shopee, Mercado Livre, Amazon e outras lojas."
