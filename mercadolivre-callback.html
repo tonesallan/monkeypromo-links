@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>MonkeyPromo · Autorização Mercado Livre</title>
+  <style>
+    :root{color-scheme:light dark;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f5f7fb;color:#182230}
+    main{max-width:560px;margin:24px;padding:28px;border-radius:18px;background:white;box-shadow:0 14px 40px rgba(0,0,0,.08)}
+    h1{font-size:1.25rem;margin:0 0 12px}p{line-height:1.5;margin:8px 0}.muted{color:#667085;font-size:.92rem}
+    @media(prefers-color-scheme:dark){body{background:#101828;color:#f2f4f7}main{background:#1d2939}.muted{color:#98a2b3}}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Autorização Mercado Livre</h1>
+    <p id="status">Conectando a autorização ao MonkeyPromo local…</p>
+    <p class="muted">Esta página não armazena credenciais, tokens ou códigos de autorização.</p>
+  </main>
+  <script>
+    (() => {
+      const status = document.getElementById('status');
+      const incoming = new URLSearchParams(window.location.search);
+      const allowedKeys = ['code', 'state', 'error', 'error_description'];
+      const local = new URL('http://127.0.0.1:3032/mercadolivre/callback');
+      let hasPayload = false;
+
+      for (const key of allowedKeys) {
+        const value = incoming.get(key);
+        if (value) {
+          local.searchParams.set(key, value);
+          hasPayload = true;
+        }
+      }
+
+      if (!hasPayload) {
+        status.textContent = 'Nenhum retorno de autorização foi recebido. Você pode fechar esta página.';
+        return;
+      }
+
+      status.textContent = 'Autorização recebida. Retornando ao MonkeyPromo neste computador…';
+      window.location.replace(local.toString());
+    })();
+  </script>
+</body>
+</html>
