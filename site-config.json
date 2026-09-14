@@ -43,8 +43,8 @@
       "subtitle": "Ofertas para jardim, cultivo e ferramentas",
       "icon": "🌱",
       "accent": "#58c469",
-      "url": "https://cav.receita.fazenda.gov.br/autenticacao/login",
-      "enabled": true,
+      "url": "",
+      "enabled": false,
       "order": 1
     },
     {
