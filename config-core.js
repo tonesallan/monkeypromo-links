@@ -121,6 +121,24 @@ export function sortItems(items) {
   });
 }
 
+// Grupos do mesmo tema (mesmo título) viram um cartão só, com um botão por loja.
+// Ex.: "Copa & Cozinha" com "Shopee" e "Mercado Livre". O subtítulo vira o rótulo do botão.
+export function groupCommunityItems(items) {
+  const groups = [];
+  const byTitle = new Map();
+  for (const item of getRenderableItems(items)) {
+    const key = item.title.toLocaleLowerCase("pt-BR");
+    let group = byTitle.get(key);
+    if (!group) {
+      group = { id: item.id, title: item.title, icon: item.icon, accent: item.accent, links: [] };
+      byTitle.set(key, group);
+      groups.push(group);
+    }
+    group.links.push({ id: item.id, label: item.subtitle || item.title, url: item.url, accent: item.accent });
+  }
+  return groups;
+}
+
 export function getRenderableItems(items) {
   return sortItems(Array.isArray(items) ? items : [])
     .filter(item => item.enabled && isValidUrl(item.url));
