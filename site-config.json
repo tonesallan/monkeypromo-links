@@ -103,8 +103,8 @@
       "subtitle": "Shopee + Mercado Livre",
       "icon": "🚗",
       "accent": "#8b5cf6",
-      "url": "https://chat.whatsapp.com/FJkjn0phtLA06qd7V2woAJ",
-      "enabled": true,
+      "url": "",
+      "enabled": false,
       "order": 30
     },
     {
@@ -115,7 +115,7 @@
       "accent": "#ee4d2d",
       "url": "https://chat.whatsapp.com/F3ffvB3ZRrU9093bYcmLo0",
       "enabled": true,
-      "order": 40
+      "order": 30
     },
     {
       "id": "grupo-monkeypromo-beleza-cuidados-pessoais",
@@ -125,7 +125,7 @@
       "accent": "#ee4d2d",
       "url": "https://chat.whatsapp.com/HpbLbnjO0aoDUbUgKdHtJs",
       "enabled": true,
-      "order": 50
+      "order": 40
     },
     {
       "id": "grupo-monkeypromo-beleza-cuidados-pessoais-mercado-livre",
@@ -135,17 +135,7 @@
       "accent": "#f2c200",
       "url": "https://chat.whatsapp.com/Fa1DXyhbDEWHVP47mq3nwm",
       "enabled": true,
-      "order": 60
-    },
-    {
-      "id": "grupo-monkeypromo-beleza-cuidados-pessoais-multilojas",
-      "title": "Beleza & Cuidados Pessoais",
-      "subtitle": "Shopee + Mercado Livre",
-      "icon": "💄",
-      "accent": "#8b5cf6",
-      "url": "https://chat.whatsapp.com/EYmIVIYHfTL0eGXNKssLRt",
-      "enabled": true,
-      "order": 70
+      "order": 50
     },
     {
       "id": "grupo-monkeypromo-casa-cozinha",
@@ -155,7 +145,17 @@
       "accent": "#ee4d2d",
       "url": "https://chat.whatsapp.com/BUUUvs3b1Pt6AxCRqMcaKd",
       "enabled": true,
-      "order": 80
+      "order": 60
+    },
+    {
+      "id": "grupo-monkeypromo-beleza-cuidados-pessoais-multilojas",
+      "title": "Beleza & Cuidados Pessoais",
+      "subtitle": "Shopee + Mercado Livre",
+      "icon": "💄",
+      "accent": "#8b5cf6",
+      "url": "",
+      "enabled": false,
+      "order": 70
     },
     {
       "id": "grupo-monkeypromo-casa-cozinha-mercado-livre",
@@ -165,17 +165,7 @@
       "accent": "#f2c200",
       "url": "https://chat.whatsapp.com/EYMIk41zwIsHMUHSqUXsas",
       "enabled": true,
-      "order": 90
-    },
-    {
-      "id": "grupo-monkeypromo-casa-cozinha-multilojas",
-      "title": "Casa & Cozinha",
-      "subtitle": "Shopee + Mercado Livre",
-      "icon": "🍽️",
-      "accent": "#8b5cf6",
-      "url": "https://chat.whatsapp.com/H9iND0waKDE6EQBY4f2eVu",
-      "enabled": true,
-      "order": 100
+      "order": 70
     },
     {
       "id": "grupo-monkeypromo-casa-decoracao",
@@ -185,7 +175,7 @@
       "accent": "#ee4d2d",
       "url": "https://chat.whatsapp.com/Igep5UMpEVK82mO5Xs7KGj",
       "enabled": true,
-      "order": 110
+      "order": 80
     },
     {
       "id": "grupo-monkeypromo-casa-decoracao-mercado-livre",
@@ -195,17 +185,17 @@
       "accent": "#f2c200",
       "url": "https://chat.whatsapp.com/HApoQj2tq1X0eY1L7U8cfH",
       "enabled": true,
-      "order": 120
+      "order": 90
     },
     {
-      "id": "grupo-monkeypromo-casa-decoracao-multilojas",
-      "title": "Casa & Decoração",
+      "id": "grupo-monkeypromo-casa-cozinha-multilojas",
+      "title": "Casa & Cozinha",
       "subtitle": "Shopee + Mercado Livre",
-      "icon": "🛋️",
+      "icon": "🍽️",
       "accent": "#8b5cf6",
-      "url": "https://chat.whatsapp.com/JY2glH0JjxEDRCM6WuO187",
-      "enabled": true,
-      "order": 130
+      "url": "",
+      "enabled": false,
+      "order": 100
     },
     {
       "id": "grupo-monkeypromo-copa-cozinha",
@@ -215,7 +205,7 @@
       "accent": "#ee4d2d",
       "url": "https://chat.whatsapp.com/LxSRd2K8ReJ4ZofPNLnUlK",
       "enabled": true,
-      "order": 140
+      "order": 100
     },
     {
       "id": "grupo-monkeypromo-copa-cozinha-mercado-livre",
@@ -225,7 +215,7 @@
       "accent": "#f2c200",
       "url": "https://chat.whatsapp.com/IgqkjCGxkcu9IXdB498Yj5",
       "enabled": true,
-      "order": 150
+      "order": 110
     },
     {
       "id": "grupo-monkeypromo-eletronicos-acessorios-para-celular",
@@ -235,7 +225,17 @@
       "accent": "#ee4d2d",
       "url": "https://chat.whatsapp.com/ICGlxvaFIHSHzoZPldhbRL",
       "enabled": true,
-      "order": 160
+      "order": 120
+    },
+    {
+      "id": "grupo-monkeypromo-casa-decoracao-multilojas",
+      "title": "Casa & Decoração",
+      "subtitle": "Shopee + Mercado Livre",
+      "icon": "🛋️",
+      "accent": "#8b5cf6",
+      "url": "",
+      "enabled": false,
+      "order": 130
     },
     {
       "id": "grupo-monkeypromo-eletronicos-acessorios-para-celular-mercado-livre",
@@ -245,17 +245,7 @@
       "accent": "#f2c200",
       "url": "https://chat.whatsapp.com/Lr1SGiKuBBBIl4qeDyle1r",
       "enabled": true,
-      "order": 170
-    },
-    {
-      "id": "grupo-monkeypromo-eletronicos-acessorios-para-celular-multilojas",
-      "title": "Eletrônicos & Acessórios para Celular",
-      "subtitle": "Shopee + Mercado Livre",
-      "icon": "📱",
-      "accent": "#8b5cf6",
-      "url": "https://chat.whatsapp.com/DgOtxs9fFji7sGLw1nXxZI",
-      "enabled": true,
-      "order": 180
+      "order": 130
     },
     {
       "id": "grupo-monkeypromo-fitness-esportes",
@@ -265,7 +255,7 @@
       "accent": "#ee4d2d",
       "url": "https://chat.whatsapp.com/FYYOCNW8rwe9ciqEZRf3sf",
       "enabled": true,
-      "order": 190
+      "order": 140
     },
     {
       "id": "grupo-monkeypromo-fitness-esportes-mercado-livre",
@@ -275,17 +265,7 @@
       "accent": "#f2c200",
       "url": "https://chat.whatsapp.com/Ho7AfArb1Mm7rUrjvxzU25",
       "enabled": true,
-      "order": 200
-    },
-    {
-      "id": "grupo-monkeypromo-fitness-esportes-multilojas",
-      "title": "Fitness & Esportes",
-      "subtitle": "Shopee + Mercado Livre",
-      "icon": "🏋️",
-      "accent": "#8b5cf6",
-      "url": "https://chat.whatsapp.com/LO9x0zGl6rt1tgbOyj2qXU",
-      "enabled": true,
-      "order": 210
+      "order": 150
     },
     {
       "id": "grupo-monkeypromo-moda-acessorios",
@@ -295,7 +275,7 @@
       "accent": "#ee4d2d",
       "url": "https://chat.whatsapp.com/CuQPN6eMvJb6ljNVvhKArT",
       "enabled": true,
-      "order": 220
+      "order": 160
     },
     {
       "id": "grupo-monkeypromo-moda-acessorios-mercado-livre",
@@ -305,17 +285,17 @@
       "accent": "#f2c200",
       "url": "https://chat.whatsapp.com/EESCsI8B3bCCpW6dwXYjF8",
       "enabled": true,
-      "order": 230
+      "order": 170
     },
     {
-      "id": "grupo-monkeypromo-moda-acessorios-multilojas",
-      "title": "Moda & Acessórios",
+      "id": "grupo-monkeypromo-eletronicos-acessorios-para-celular-multilojas",
+      "title": "Eletrônicos & Acessórios para Celular",
       "subtitle": "Shopee + Mercado Livre",
-      "icon": "👗",
+      "icon": "📱",
       "accent": "#8b5cf6",
-      "url": "https://chat.whatsapp.com/IEYgAfbmrMQKQuOrxS8L3w",
-      "enabled": true,
-      "order": 240
+      "url": "",
+      "enabled": false,
+      "order": 180
     },
     {
       "id": "grupo-monkeypromo-papelaria-escritorio",
@@ -325,7 +305,7 @@
       "accent": "#ee4d2d",
       "url": "https://chat.whatsapp.com/FPaL0KGuMnwLEjnBNS04sm",
       "enabled": true,
-      "order": 250
+      "order": 180
     },
     {
       "id": "grupo-monkeypromo-produtos-para-pets",
@@ -335,7 +315,7 @@
       "accent": "#ee4d2d",
       "url": "https://chat.whatsapp.com/JrKTOM2l1toB2JIOLLSlWM",
       "enabled": true,
-      "order": 260
+      "order": 190
     },
     {
       "id": "grupo-monkeypromo-produtos-para-pets-mercado-livre",
@@ -345,7 +325,27 @@
       "accent": "#f2c200",
       "url": "https://chat.whatsapp.com/Cdpr1DcWksO0UKgugCe4IQ",
       "enabled": true,
-      "order": 270
+      "order": 200
+    },
+    {
+      "id": "grupo-monkeypromo-fitness-esportes-multilojas",
+      "title": "Fitness & Esportes",
+      "subtitle": "Shopee + Mercado Livre",
+      "icon": "🏋️",
+      "accent": "#8b5cf6",
+      "url": "",
+      "enabled": false,
+      "order": 210
+    },
+    {
+      "id": "grupo-monkeypromo-moda-acessorios-multilojas",
+      "title": "Moda & Acessórios",
+      "subtitle": "Shopee + Mercado Livre",
+      "icon": "👗",
+      "accent": "#8b5cf6",
+      "url": "",
+      "enabled": false,
+      "order": 240
     },
     {
       "id": "grupo-monkeypromo-produtos-para-pets-multilojas",
@@ -353,8 +353,8 @@
       "subtitle": "Shopee + Mercado Livre",
       "icon": "🐾",
       "accent": "#8b5cf6",
-      "url": "https://chat.whatsapp.com/H3nsyUt9KIe9FknvMSBpSG",
-      "enabled": true,
+      "url": "",
+      "enabled": false,
       "order": 280
     }
   ],
