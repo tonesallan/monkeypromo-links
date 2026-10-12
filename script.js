@@ -1,5 +1,6 @@
 import {
   getRenderableItems,
+  groupCommunityItems,
   loadConfig
 } from "./config-core.js";
 
@@ -111,13 +112,55 @@ function renderLinkSection(sectionId, containerId, items, grid = false) {
   return visibleItems.length;
 }
 
+function createGroupCard(group) {
+  const card = document.createElement("div");
+  card.className = "link-card grid-card group-card";
+  card.dataset.itemId = group.id;
+  card.style.setProperty("--card-accent", group.accent);
+
+  const icon = document.createElement("span");
+  icon.className = "icon-box";
+  icon.setAttribute("aria-hidden", "true");
+  icon.textContent = group.icon;
+
+  const copy = document.createElement("span");
+  copy.className = "card-copy";
+  const title = document.createElement("strong");
+  title.textContent = group.title;
+  const subtitle = document.createElement("small");
+  subtitle.textContent = "Escolha o grupo da loja que você prefere";
+  copy.append(title, subtitle);
+
+  const actions = document.createElement("span");
+  actions.className = "group-links";
+  for (const item of group.links) {
+    const link = document.createElement("a");
+    link.className = "group-link";
+    link.href = item.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.dataset.itemId = item.id;
+    link.style.setProperty("--card-accent", item.accent);
+    link.textContent = item.label;
+    link.setAttribute("aria-label", `${group.title}: entrar no grupo ${item.label}`);
+    actions.append(link);
+  }
+
+  card.append(icon, copy, actions);
+  return card;
+}
+
 function renderCommunity(config) {
-  const count = renderLinkSection(
-    "interesses",
-    "community-links",
-    config.community,
-    true
-  );
+  const section = byId("interesses");
+  const container = byId("community-links");
+  let count = 0;
+  if (section && container) {
+    const groups = groupCommunityItems(config.community);
+    // Mesmo formato para todos os temas, com um ou vários botões de loja.
+    container.replaceChildren(...groups.map(createGroupCard));
+    count = groups.length;
+    section.hidden = count === 0;
+  }
 
   const interestCta = byId("interestCta");
   if (interestCta) interestCta.hidden = count === 0;

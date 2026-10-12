@@ -168,3 +168,19 @@ test("JSON inválido no fetch não quebra e usa fallback", async () => {
   assert.equal(result.source, "fallback");
   assert.equal(result.config.hero.title, DEFAULT_CONFIG.hero.title);
 });
+
+test("grupos do mesmo tema viram um cartão com um botão por loja", async () => {
+  const { groupCommunityItems } = await import("../config-core.js");
+  const config = normalizeConfig({
+    community: [
+      { id: "copa-shopee", title: "Copa & Cozinha", subtitle: "Shopee", icon: "🍳", url: "https://chat.whatsapp.com/a", enabled: true, order: 1 },
+      { id: "copa-ml", title: "Copa & Cozinha", subtitle: "Mercado Livre", icon: "🍳", url: "https://chat.whatsapp.com/b", enabled: true, order: 2 },
+      { id: "pets", title: "Pets", subtitle: "Shopee", icon: "🐾", url: "https://chat.whatsapp.com/c", enabled: true, order: 3 },
+      { id: "off", title: "Pets", subtitle: "Mercado Livre", url: "", enabled: false, order: 4 }
+    ]
+  });
+  const groups = groupCommunityItems(config.community);
+  assert.equal(groups.length, 2);
+  assert.deepEqual(groups[0].links.map(link => link.label), ["Shopee", "Mercado Livre"]);
+  assert.equal(groups[1].links.length, 1, "link desativado não entra");
+});
